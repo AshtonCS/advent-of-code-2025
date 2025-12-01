@@ -18,4 +18,8 @@ dial = 50
 password = 0;
 
 for m in moves:
-    print(m)
+    dial = (dial + m[0] * m[1]) % 100
+    if dial == 0:
+        password += 1
+
+print(password)
