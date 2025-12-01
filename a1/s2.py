@@ -1,4 +1,5 @@
 from pathlib import Path
+import math
 
 here = Path(__file__).parent
 input_path = here / "input.txt"
@@ -20,7 +21,7 @@ password = 0;
 for m in moves:
     movement = (dial + m[0] * m[1])
     dial = movement % 100
-    overflow = int(movement / 100)
+    overflow = math.floor((movement - 1) / 100)
     password += overflow if overflow > 0 else -1 * overflow
 
 print(password)
