@@ -16,12 +16,23 @@ except Exception as e:
     print(f"An error occurred: {e}")
 
 dial = 50
-password = 0;
+password = 0
+leftZero = False
+rightZero = False
 
 for m in moves:
+    if(leftZero and m[0] == 1):
+        password += 1
+    if(rightZero and m[0] == -1):
+        password -= 1
     movement = (dial + m[0] * m[1])
     dial = movement % 100
-    overflow = math.floor((movement - 1) / 100)
-    password += overflow if overflow > 0 else -1 * overflow
+    overflow = math.floor(movement / 100)
+    password += abs(overflow)
+    leftZero = dial == 0 and m[0] == -1
+    rightZero = dial == 0 and m[0] == 1
+
+if leftZero:
+    password += 1
 
 print(password)
