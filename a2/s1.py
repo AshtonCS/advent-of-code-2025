@@ -25,18 +25,20 @@ for r in ranges:
         
         first_i = 0
         if(l_digits % 2 == 1):
-            first_i = int(math.pow(10, i))
+            first_i = int(math.pow(10, i-1))
         else:
             first_i = lower_bound // int(math.pow(10, i))
         
         last_i = 0
         if(u_digits % 2 == 1):
-            last_i = int(math.pow(10, i+1)) - 1
+            last_i = int(math.pow(10, i)) - 1
         else:
             last_i = upper_bound // int(math.pow(10, i))
         
         for j in range(first_i, last_i + 1):
-            invalid_sum += j * (int(math.pow(10, i)) + 1)
+            candidate = j * (int(math.pow(10, i)) + 1)
+            if candidate >= lower_bound and candidate <= upper_bound:
+                invalid_sum += candidate
 
 print(invalid_sum)
         
