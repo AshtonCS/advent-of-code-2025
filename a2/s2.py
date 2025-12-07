@@ -22,33 +22,27 @@ for r in ranges:
     u_digits = len(ub)
     lower_bound = int(lb)
     upper_bound = int(ub)
-    for i in range(l_digits, u_digits + 1):
-        for j in range(1, i):
+    for i in range(l_digits, u_digits + 1): # i is the number of digits in the candidate number
+        for j in range(1, i): # j is the length of the substring being considered (only in sizes that are multiples of i)
             if i % j != 0:
                 continue
             first_i = 0
-            if(l_digits % i != 0):
-                print('c')
+            if(l_digits % i != 0): # first_i is the minimum value with j digits if the lower bound has less than i digits
                 first_i = int(math.pow(10, j-1))
             else:
-                print('d')
-                first_i = lower_bound // int(math.pow(10, (i-j)))
+                first_i = lower_bound // int(math.pow(10, (i-j))) # Otherwise, it's the first j numbers of lower bound
             
             last_i = 0
-            if(u_digits % i != 0):
-                print('a')
+            if(u_digits % i != 0): # last_i is the maximum value with j digits if the upper bound has more than i digits
                 last_i = int(math.pow(10, j)) - 1
             else:
-                print('b')
-                last_i = upper_bound // int(math.pow(10, i-j))
+                last_i = upper_bound // int(math.pow(10, i-j)) # Otherwise, it's the first j numbers of upper bound
             
-            print(first_i, last_i, i, j)
             for k in range(first_i, last_i + 1):
                 candidate = 0
                 for l in range(0, int(i/j)):
                     candidate += k * int(math.pow(10, l * j))
                 if candidate >= lower_bound and candidate <= upper_bound and candidate not in solutions:
-                    print(" -- ", candidate, k)
                     invalid_sum += candidate
                     solutions.append(candidate)
 
