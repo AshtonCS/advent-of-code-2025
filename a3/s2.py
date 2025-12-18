@@ -15,4 +15,17 @@ except FileNotFoundError:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-print(joltages)
+def maxSubstring(bank, length):
+    if(length == 0):
+        return 0
+    maxIdx = 0
+    for i in range(0, len(bank) - length + 1):
+        if int(bank[i]) > int(bank[maxIdx]):
+            maxIdx = i
+    return int(bank[maxIdx]) * math.pow(10, length-1) + maxSubstring(bank[maxIdx+1:], length - 1)
+
+if __name__ == "__main__":
+    total = 0
+    for bank in joltages:
+        total += maxSubstring(bank, 12)
+    print(total)
