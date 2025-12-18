@@ -16,8 +16,10 @@ except Exception as e:
     print(f"An error occurred: {e}")
 
 def maxSubstring(bank, length):
+    if(length == 0):
+        return 0
     maxIdx = 0
-    for i in range(0, len(bank) - length):
+    for i in range(0, len(bank) - length + 1):
         if int(bank[i]) > int(bank[maxIdx]):
             maxIdx = i
     print(bank, length)
