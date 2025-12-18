@@ -26,8 +26,13 @@ def neighbourCount(r, c):
 
 if __name__ == "__main__":
     total = 0
-    for row in range(len(grid)):
-        for col in range(len(grid[0])-1):
-            if grid[row][col] == '@' and neighbourCount(row, col) < 4:
-                total += 1
+    new_total = -1
+    while new_total != 0:
+        new_total = 0
+        for row in range(len(grid)):
+            for col in range(len(grid[0])-1):
+                if grid[row][col] == '@' and neighbourCount(row, col) < 4:
+                    grid[row][col] = '.'
+                    new_total += 1
+        total += new_total
     print(total)
