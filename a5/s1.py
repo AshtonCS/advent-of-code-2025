@@ -2,7 +2,7 @@ from pathlib import Path
 import math
 
 here = Path(__file__).parent
-input_path = here / "prac.txt"
+input_path = here / "input.txt"
 
 quality = []
 available = []
@@ -21,4 +21,12 @@ except FileNotFoundError:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-print(quality, available)
+total = 0
+
+for ingredient in available:
+    for ranges in quality:
+        if ranges[1] >= ingredient >= ranges[0]:
+            total += 1
+            break
+
+print(total)
