@@ -1,8 +1,19 @@
+# Note: This is an incorrect solution
+# After consulting others' solutions, I realised my problem
+# was that by splitting so early on, I could not accurately tell
+# which digits belonged to which numbers. To fix my program, I would
+# save each line of the input file to a string, then iterate by index,
+# then iterate backward through it. I would store the list of numbers
+# until I saw a column with an operator in the final index, then I would
+# apply that operator onto the list, add to the total and clear the list
+# for the next operations.
+
+
 from pathlib import Path
 import math
 
 here = Path(__file__).parent
-input_path = here / "input.txt"
+input_path = here / "prac.txt"
 
 problems = []
 
@@ -24,9 +35,9 @@ for p in range(len(problems[0])):
 
     for i in range(len(problems) - 1):
         digits = list(problems[i][p])
-        if(sign == '*'):
-            digits.reverse()
         split_nums[i][:len(digits)] = digits
+    
+    print(split_nums)
 
     ceph_nums = ["" for _ in range(4)]
     for num in split_nums:
