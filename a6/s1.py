@@ -18,15 +18,14 @@ except Exception as e:
 
 total = 0
 
-print(total)
-
 for p in range(len(problems[0])):
-    calc = problems[0][p]
-    for num in range(1, len(problems) - 2):
-        if(problems[len(problems[0])-1][p] == '+'):
-            calc = calc + problems[num][p]
+    calc = int(problems[0][p])
+    for num in range(1, len(problems) - 1):
+        if(problems[len(problems)-1][p] == '+'):
+            calc = calc + int(problems[num][p])
         else:
-            calc = calc * problems[num][p]
-        
+            calc = calc * int(problems[num][p])
+    total += calc
+    print(calc)
 
-
+print(total)
